@@ -1,12 +1,40 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>&nbsp;|
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
+<script lang="ts">
+import { Vue } from "vue-property-decorator";
+import Component from "vue-class-component";
+import {
+  Button,
+  Toast,
+  Popup,
+  Field,
+  Cell,
+  CellGroup,
+  Collapse,
+  CollapseItem
+} from "vant";
+
+@Component({
+  name: "about",
+  components: {
+    [Button.name]: Button,
+    [Field.name]: Field,
+    [CellGroup.name]: CellGroup,
+    [Cell.name]: Cell,
+    [Popup.name]: Popup,
+    [Collapse.name]: Collapse,
+    [CollapseItem.name]: CollapseItem
+  }
+})
+export default class About extends Vue {
+  enterPage() {
+    this.$router.push({ name: "home" });
+  }
+}
+</script>
 
 <style lang="scss">
 #app {

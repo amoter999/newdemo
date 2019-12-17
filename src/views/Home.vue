@@ -3,6 +3,10 @@
     <van-collapse v-model="activeNames" v-for="item in list" :key="item.id">
       <van-collapse-item :title="item.tit" :name="item.id">{{item.content}}</van-collapse-item>
     </van-collapse>
+    <!-- <router-link>nihao</router-link> -->
+    <keep-alive>
+      <div class="clickEnterLsit" @click="clickEnterLsit">点击进入商品列表页面</div>
+    </keep-alive>
   </div>
 </template>
 
@@ -14,14 +18,17 @@ import {
   Toast,
   Popup,
   Field,
+  Tab,
+  Tabs,
   Cell,
   CellGroup,
   Collapse,
   CollapseItem
 } from "vant";
+// Vue.use(Tab).use(Tabs);
 
 @Component({
-  name: "about",
+  name: "home",
   components: {
     [Button.name]: Button,
     [Field.name]: Field,
@@ -29,10 +36,12 @@ import {
     [Cell.name]: Cell,
     [Popup.name]: Popup,
     [Collapse.name]: Collapse,
-    [CollapseItem.name]: CollapseItem
+    [CollapseItem.name]: CollapseItem,
+    [Tab.name]: Tab,
+    [Tabs.name]: Tabs
   }
 })
-export default class About extends Vue {
+export default class Home extends Vue {
   msg: string = "This is a flower";
   list: Object[] = [
     {
@@ -45,8 +54,25 @@ export default class About extends Vue {
       tit: "Tuesday",
       id: "234",
       content: "Compiled successfully in 898ms Type checking in progress..."
+    },
+    {
+      tit: "Wednesday",
+      id: "345",
+      content: "Compiled successfully in 898ms Type checking in progress..."
     }
   ];
   activeNames: string[] = [];
+  clickEnterLsit() {
+    this.$router.push({ name: "goodslist" });
+  }
 }
 </script>
+<style lang="scss">
+.clickEnterLsit {
+  font: 16px sans-serif;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #1069dd;
+}
+</style>

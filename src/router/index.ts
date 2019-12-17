@@ -5,6 +5,10 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: 'home',
+  },
+  {
+    path: '/home',
     name: 'home',
     component: () => import('@/views/Home.vue')
   },
@@ -12,11 +16,21 @@ const routes = [
     path: '/about',
     name: 'about',
     component: () => import('@/views/About.vue')
+  },
+  {
+    path: '/goodslist',
+    name: 'goodslist',
+    component: () => import('@/views/GoodsList.vue')
+  },
+  {
+    path: '/goodDetail',
+    name: 'goodDetail',
+    component: () => import('@/views/goodDetail.vue'),
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
