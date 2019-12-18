@@ -51,5 +51,6 @@ export default class Comment extends Vue {
 </script>
 <style lang="scss">
 .comment {
+  text-align: center;
 }
 </style>

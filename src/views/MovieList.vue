@@ -31,7 +31,7 @@
                   <span>评分：</span>
                   <span v-if="item.rating.average!==0">
                     {{item.rating.average}}分
-                    <van-rate v-model="item.rating.average/2" allow-half readonly />
+                    <!-- <van-rate v-model="item.rating.average/2" allow-half readonly /> -->
                   </span>
                   <span v-else-if="item.rating.average===0">
                     {{item.rating.average}}分
