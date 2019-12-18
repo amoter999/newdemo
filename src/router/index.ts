@@ -18,14 +18,19 @@ const routes = [
     component: () => import('@/views/About.vue')
   },
   {
-    path: '/goodslist',
-    name: 'goodslist',
-    component: () => import('@/views/GoodsList.vue')
+    path: '/movieList',
+    name: 'movieList',
+    component: () => import('@/views/MovieList.vue')
   },
   {
-    path: '/goodDetail',
-    name: 'goodDetail',
-    component: () => import('@/views/goodDetail.vue'),
+    path: '/comment/:id',
+    name: 'comment',
+    component: () => import('@/views/comment.vue'),
+  },
+  {
+    path: '/movieDetail/:id',
+    name: 'movieDetail',
+    component: () => import('@/views/movieDetail.vue'),
   }
 ]
 
