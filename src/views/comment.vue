@@ -1,8 +1,8 @@
 
 
 <template>
-  <div class="goodsDetail">
-    <div>nihao</div>
+  <div class="comment">
+    <div class="headImg"></div>
   </div>
 </template>
 <script lang="ts">
@@ -23,7 +23,7 @@ import {
 } from "vant";
 Vue.use(Sku);
 @Component({
-  name: "goodDetail",
+  name: "comment",
   components: {
     [Button.name]: Button,
     [Field.name]: Field,
@@ -36,7 +36,7 @@ Vue.use(Sku);
     [Tabs.name]: Tabs
   }
 })
-export default class GoodDetail extends Vue {
+export default class Comment extends Vue {
   show: boolean = false;
   sku: object = {
     // 数据结构见下方文档
@@ -49,4 +49,7 @@ export default class GoodDetail extends Vue {
   };
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.comment {
+}
+</style>
