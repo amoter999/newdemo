@@ -6,24 +6,24 @@
       </div>
       <div class="rightCont">
         <div class="rigInnerCont">
-          <p class="movieTit">{{movieDetailObj.title}}</p>
-          <!-- <p class="movieDirectors">
-            导演：
-            <span v-for="item in movieDetailObj.directors" :key="item.id">{{item.name}}&nbsp;</span>
-          </p>-->
+          <p class="movieTit">{{ movieDetailObj.title }}</p>
           <p class="movieSorts">
             电影类型：
-            <span v-for="(item,index) in movieDetailObj.genres" :key="index">{{item}}&nbsp;</span>
+            <span v-for="(item, index) in movieDetailObj.genres" :key="index"
+              >{{ item }}&nbsp;</span
+            >
           </p>
           <p class="moviePubTime">
             上线时间：
-            <span>{{movieDetailObj.pubdate}}</span>
+            <span>{{ movieDetailObj.pubdate }}</span>
           </p>
           <p class="moviePubTime">
             上线国家：
-            <span v-for="(item,index) in movieDetailObj.countries" :key="index">{{item}}&nbsp;</span>
+            <span v-for="(item, index) in movieDetailObj.countries" :key="index"
+              >{{ item }}&nbsp;</span
+            >
           </p>
-          <p class="movieSummary">简介：{{movieDetailObj.summary}}</p>
+          <p class="movieSummary">简介：{{ movieDetailObj.summary }}</p>
         </div>
       </div>
     </div>
@@ -31,29 +31,47 @@
       <p class="actorTit">主演列表：</p>
       <div class="outerActor" ref="personWrap">
         <ul class="actorList" ref="personTab">
-          <li class="actorItem" v-for="item in movieDetailObj.casts" :key="item.id">
+          <li
+            class="actorItem"
+            v-for="item in movieDetailObj.casts"
+            :key="item.id"
+          >
             <img :src="getImage(item.avatars.large)" alt />
-            <p>{{item.name}}</p>
+            <p>{{ item.name }}</p>
           </li>
         </ul>
       </div>
     </div>
-    <div class="comment">
+    <div class="allComments">
       <p class="comTit">热门评论：</p>
-      <div class="comCont">
-        <div class="topAvatar">
-          <div class="leftAvatarImg">
-            <img :src="img" alt />
+      <div
+        class="comment"
+        v-for="item in movieDetailObj.popular_comments"
+        :key="item.id"
+      >
+        <div class="comCont">
+          <div class="topAvatar">
+            <div class="leftAvatarImg">
+              <img v-lazy="getImage(item.author.avatar)" alt />
+            </div>
+            <div class="rightAvatarCont">
+              <p class="nickname">{{ item.author.name }}</p>
+              <p
+                class="signature"
+                v-text="
+                  item.author.signature == ''
+                    ? '暂无个签'
+                    : item.author.signature
+                "
+              ></p>
+            </div>
           </div>
-          <div class="rightAvatarCont">
-            <p class="nickname">嘟嘟熊之父</p>
-            <p class="signature">谁来拧动拧发条鸟的发条</p>
+          <div class="botCont">
+            <p class="contText">
+              {{ item.content }}
+            </p>
+            <p class="timeText">{{ item.created_at }}</p>
           </div>
-        </div>
-        <div class="botCont">
-          <p
-            class="contText"
-          >好于印度原版，将不痛不痒的现实主义裹脚布改造成高度浓缩的社会寓言。羊命、蒙太奇、架空国度、多重人物身份，可以置放在任何政治语境下进行解读。对准面孔的长久凝视，是试探和挑衅，也是控诉和审判。陈冲太猛，狰狞的表情犹如恶魔附体。</p>
         </div>
       </div>
     </div>
@@ -63,8 +81,9 @@
 import { Vue } from "vue-property-decorator";
 import Component from "vue-class-component";
 import { movieDetail } from "@/api/index";
+import { DateTime } from "luxon";
 import { Toast, Lazyload, Swipe, SwipeItem } from "vant";
-import BScroll from "better-scroll";
+
 Vue.use(Lazyload);
 @Component({
   name: "movieDetail",
@@ -230,7 +249,7 @@ export default class Home extends Vue {
       }
     }
   }
-  .comment {
+  .allComments {
     .comTit {
       font-size: 18px;
       height: 40px;
@@ -289,6 +308,12 @@ export default class Home extends Vue {
         padding-right: 15px;
         text-align: left;
         p {
+          &.timeText {
+            font-size: 15px;
+            color: #ccc;
+            text-align: left;
+            margin-top: 10px;
+          }
         }
       }
     }
