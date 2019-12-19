@@ -39,7 +39,7 @@ import {
 })
 export default class About extends Vue {
   msg: string = "This is a flower";
-  newIcon: string = require("@/assets/jxjrapp.png");
+  newIcon: string = require("@/assets/images/jxjrapp.png");
   // isIos: boolean = false;
   // isAndroid: boolean = false;
   get judgeIOS() {
