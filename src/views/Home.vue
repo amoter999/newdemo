@@ -63,7 +63,7 @@ export default class Home extends Vue {
   ];
   activeNames: string[] = [];
   clickEnterLsit() {
-    this.$router.push({ name: "goodslist" });
+    this.$router.push({ name: "movieList" });
   }
 }
 </script>
