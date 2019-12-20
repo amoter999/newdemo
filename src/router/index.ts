@@ -20,7 +20,11 @@ const routes = [
   {
     path: '/movieList',
     name: 'movieList',
-    component: () => import('@/views/MovieList.vue')
+    component: () => import('@/views/MovieList.vue'),
+    meta: {
+      name: "referrer",
+      content: "never"
+    }
   },
   {
     path: '/comment/:id',

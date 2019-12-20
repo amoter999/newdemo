@@ -53,7 +53,7 @@
                     size="small"
                     class="comment"
                     @click="comment(item.id)"
-                  >评价</van-button>
+                  >查看评价</van-button>
                 </p>
               </div>
             </div>
@@ -196,6 +196,10 @@ export default class About extends Vue {
   }
   .someBtn {
     overflow: hidden;
+    padding-top: 7px;
+    .comment {
+      float: left;
+    }
   }
   .innerCont {
     padding-top: 53px;
@@ -248,7 +252,7 @@ export default class About extends Vue {
           }
         }
         .comment {
-          margin-top: 12px;
+          margin-top: 5px;
           margin-right: 10px;
         }
       }

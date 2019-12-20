@@ -3,10 +3,10 @@
     <van-collapse v-model="activeNames" v-for="item in list" :key="item.id">
       <van-collapse-item :title="item.tit" :name="item.id">{{item.content}}</van-collapse-item>
     </van-collapse>
-    <!-- <router-link>nihao</router-link> -->
-    <keep-alive>
-      <div class="clickEnterLsit" @click="clickEnterLsit">点击进入商品列表页面</div>
-    </keep-alive>
+
+    <div class="clickEnterLsit" @click="clickEnterLsit">点击进入商品列表页面</div>
+    <div class="clickEnterLsit" @click="clickEnterAgree">点击进入协议内容页面</div>
+    <div class="clickEnterLsit" @click="clickEnterSteps">点击进入进度条内容页面</div>
   </div>
 </template>
 
@@ -64,6 +64,12 @@ export default class Home extends Vue {
   activeNames: string[] = [];
   clickEnterLsit() {
     this.$router.push({ name: "movieList" });
+  }
+  clickEnterAgree() {
+    this.$router.push({ name: "about" });
+  }
+  clickEnterSteps() {
+    this.$router.push({ name: "steps" });
   }
 }
 </script>
