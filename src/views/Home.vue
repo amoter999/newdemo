@@ -69,7 +69,7 @@ export default class Home extends Vue {
     this.$router.push({ name: "about" });
   }
   clickEnterSteps() {
-    this.$router.push({ name: "steps" });
+    this.$router.push({ name: "stepPage" });
   }
 }
 </script>

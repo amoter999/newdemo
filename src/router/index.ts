@@ -8,24 +8,31 @@ const routes = [
     redirect: 'home',
   },
   {
-    path: '/home',
-    name: 'home',
-    component: () => import('@/views/Home.vue')
+    path: '/tabs',
+    name: 'tabs',
+    component: () => import('@/views/tabs.vue'),
+    children: [{
+      path: '/home',
+      name: 'home',
+      component: () => import('@/views/Home.vue')
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/About.vue')
+    }, {
+      path: '/movieList',
+      name: 'movieList',
+      component: () => import('@/views/MovieList.vue'),
+      meta: {
+        name: "referrer",
+        content: "never",
+        title: "电影列表"
+      }
+    }]
   },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('@/views/About.vue')
-  },
-  {
-    path: '/movieList',
-    name: 'movieList',
-    component: () => import('@/views/MovieList.vue'),
-    meta: {
-      name: "referrer",
-      content: "never"
-    }
-  },
+
+
   {
     path: '/comment/:id',
     name: 'comment',
@@ -35,7 +42,21 @@ const routes = [
     path: '/movieDetail/:id',
     name: 'movieDetail',
     component: () => import('@/views/movieDetail.vue'),
+  },
+  {
+    path: '/stepPage',
+    name: 'stepPage',
+    component: () => import('@/views/StepPage.vue'),
+  },
+  {
+    path: '/dateTimePage',
+    name: 'dateTimePage',
+    component: () => import('@/views/dateTimePage.vue'),
+    meta: {
+      title: '选择时间页面'
+    }
   }
+
 ]
 
 const router = new VueRouter({

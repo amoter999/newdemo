@@ -1,15 +1,18 @@
 <template>
-  <div class="steps"></div>
+  <div class="uploadImg">
+    <van-uploader :before-read="beforeRead" />
+  </div>
 </template>
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 import Component from "vue-class-component";
-import { Step, Steps } from "vant";
+import {Uploader } from "vant";
+
 @Component({
-  name: "steps",
+  name: "uploadImg",
   components: {}
 })
-export default class StepBox extends Vue {}
+export default class Home extends Vue {}
 </script>
 <style lang="scss">
 </style>
