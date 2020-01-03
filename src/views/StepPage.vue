@@ -36,6 +36,9 @@
     <p class="clickEnter">
       <router-link class="enterNext" to="./dateTimepage">点击进入时间页面</router-link>
     </p>
+    <p class="clickEnter">
+      <router-link class="enterNext" to="./uploadImg">点击进入上传图片页面</router-link>
+    </p>
   </div>
 </template>
 <script lang="ts">
@@ -91,6 +94,7 @@ export default class StepPage extends Vue {
     padding: 15px;
   }
   .clickEnter {
+    margin-bottom: 15px;
     text-align: center;
     .enterNext {
       font-size: 16px;

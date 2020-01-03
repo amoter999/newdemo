@@ -7,6 +7,7 @@
     <div class="clickEnterLsit" @click="clickEnterLsit">点击进入商品列表页面</div>
     <div class="clickEnterLsit" @click="clickEnterAgree">点击进入协议内容页面</div>
     <div class="clickEnterLsit" @click="clickEnterSteps">点击进入进度条内容页面</div>
+    <div class="clickEnterLsit" @click="clickEnterLayoutPage">康康布局问题</div>
   </div>
 </template>
 
@@ -70,6 +71,9 @@ export default class Home extends Vue {
   }
   clickEnterSteps() {
     this.$router.push({ name: "stepPage" });
+  }
+  clickEnterLayoutPage() {
+    this.$router.push({ name: "layoutPage" });
   }
 }
 </script>

@@ -89,7 +89,7 @@ export default class About extends Vue {
     }
   }
   next() {
-    this.$router.push({ name: "movieList" });
+    this.$router.push({ name: "BankAddSpace" });
   }
   last() {
     this.$router.push({ name: "home" });

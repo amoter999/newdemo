@@ -6,6 +6,16 @@
       </van-search>
     </div>
     <div class="innerCont">
+      <van-swipe
+        :autoplay="3000"
+        indicator-color="white"
+        v-for="(item,index) in swipeImgList"
+        :key="index"
+      >
+        <van-swipe-item>
+          <img src alt />
+        </van-swipe-item>
+      </van-swipe>
       <van-pull-refresh
         v-model="isLoading"
         @refresh="onRefresh"
@@ -80,6 +90,8 @@ import {
   PullRefresh,
   Pagination,
   Search,
+  Swipe,
+  SwipeItem,
   Toast
 } from "vant";
 import { DateTime } from "luxon";
@@ -95,7 +107,9 @@ Vue.use(Toast);
     [Button.name]: Button,
     [PullRefresh.name]: PullRefresh,
     [Pagination.name]: Pagination,
-    [Search.name]: Search
+    [Search.name]: Search,
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem
   },
   filters: {
     filterComment: (value: number) => {
@@ -115,6 +129,7 @@ export default class About extends Vue {
   isLoading: boolean = false;
   searchText: string = "";
   isShowPage: boolean = false;
+  swipeImgList: string[] = [];
   created() {
     // 自定义加载图标
     Toast.loading({
@@ -137,6 +152,7 @@ export default class About extends Vue {
         this.movieList = res.data.subjects;
         this.isLoading = false;
         this.isShowPage = true;
+        // this.swipeImgList =
         Toast.clear();
       })
       .catch(err => {
