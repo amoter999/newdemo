@@ -24,6 +24,10 @@ export function movieDetail(id: string): AxiosPromise {
         // params: query
     })
 }
-
-
-
+// 获取某个电影的评论
+export function comments(id: string): AxiosPromise {
+    return request({
+        url: `v2/movie/subject/${id}/comments`,
+        method: 'get',
+    })
+}

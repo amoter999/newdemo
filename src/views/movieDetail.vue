@@ -1,5 +1,5 @@
 <template>
-  <div class="movieDetail">
+  <div class="movieDetail" v-if="isShowCurrentPage">
     <div class="headImg">
       <div class="leftImg">
         <img v-lazy="getImage(headImg)" alt />
@@ -9,9 +9,7 @@
           <p class="movieTit">{{ movieDetailObj.title }}</p>
           <p class="movieSorts">
             电影类型：
-            <span v-for="(item, index) in movieDetailObj.genres" :key="index"
-              >{{ item }}&nbsp;</span
-            >
+            <span v-for="(item, index) in movieDetailObj.genres" :key="index">{{ item }}&nbsp;</span>
           </p>
           <p class="moviePubTime">
             上线时间：
@@ -19,9 +17,10 @@
           </p>
           <p class="moviePubTime">
             上线国家：
-            <span v-for="(item, index) in movieDetailObj.countries" :key="index"
-              >{{ item }}&nbsp;</span
-            >
+            <span
+              v-for="(item, index) in movieDetailObj.countries"
+              :key="index"
+            >{{ item }}&nbsp;</span>
           </p>
           <p class="movieSummary">简介：{{ movieDetailObj.summary }}</p>
         </div>
@@ -31,11 +30,7 @@
       <p class="actorTit">主演列表：</p>
       <div class="outerActor" ref="personWrap">
         <ul class="actorList" ref="personTab">
-          <li
-            class="actorItem"
-            v-for="item in movieDetailObj.casts"
-            :key="item.id"
-          >
+          <li class="actorItem" v-for="item in movieDetailObj.casts" :key="item.id">
             <img :src="getImage(item.avatars.large)" alt />
             <p>{{ item.name }}</p>
           </li>
@@ -44,11 +39,7 @@
     </div>
     <div class="allComments">
       <p class="comTit">热门评论：</p>
-      <div
-        class="comment"
-        v-for="item in movieDetailObj.popular_comments"
-        :key="item.id"
-      >
+      <div class="comment" v-for="item in movieDetailObj.popular_comments" :key="item.id">
         <div class="comCont">
           <div class="topAvatar">
             <div class="leftAvatarImg">
@@ -67,9 +58,7 @@
             </div>
           </div>
           <div class="botCont">
-            <p class="contText">
-              {{ item.content }}
-            </p>
+            <p class="contText">{{ item.content }}</p>
             <p class="timeText">{{ item.created_at }}</p>
           </div>
         </div>
@@ -99,6 +88,7 @@ export default class Home extends Vue {
   img: string = require("../assets/images/detail-headimg.jpg");
   actorListWidth: number = 0;
   itemWidth: number = 0;
+  isShowCurrentPage: boolean = false;
   created() {
     this.renderData();
   }
@@ -114,6 +104,7 @@ export default class Home extends Vue {
         this.headImg = res.data.images.large;
         this.movieDetailObj = res.data;
         console.log(res);
+        this.isShowCurrentPage = true;
         Toast.clear();
       })
       .catch(err => {
@@ -209,7 +200,7 @@ export default class Home extends Vue {
     }
     .outerActor {
       width: 100%;
-      height: 200px;
+      // height: 200px;
       padding-top: 10px;
       border-bottom: 1px solid #efefef;
       padding-bottom: 10px;
@@ -219,7 +210,7 @@ export default class Home extends Vue {
         overflow-x: scroll;
         font-size: 0;
         white-space: nowrap;
-        height: 100%;
+        // height: 100%;
         .actorItem {
           width: 120px;
           height: 199px;

@@ -1,14 +1,51 @@
 <template>
   <div class="about">
-    <h1 class="aboutlist">This is an about page</h1>
-    <van-cell title="URL 跳转" is-link url="/about" />
-    <van-cell title="单元格" is-link arrow-direction="down" value="内容" />
-    <van-cell-group>
-      <van-field v-model="msg" center clearable placeholder="请输入短信验证码">
-        <img slot="button" class="slotBtn" :src="newIcon" alt />
-      </van-field>
-    </van-cell-group>
-    <div class="submitBtn"></div>
+    <div class="innerCont">
+      <div class="content">
+        <header class="title">征信同意</header>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>1.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+        <p>2.重要须知：借口而感觉欧派二更健康发过来南京考虑到福建省考虑了； 低费率砥砺奋进赶快来突然又没了迫使对方大风歌哦。</p>
+      </div>
+      <div class="contracts" @click="isSure">
+        <van-checkbox v-model="checked"></van-checkbox>
+        <span class="contractsCon">
+          我已阅读并同意
+          <span
+            class="agreement"
+          >《南京银行征信授权书》,《南京银行个人信息查询使用授权书》,《个人信息查询授权书》,《征信授权委托书》,《吉象普惠征信授权书》</span>等协议。
+        </span>
+      </div>
+      <div class="completeBtn">
+        <van-button
+          type="primary"
+          color="#1777C8"
+          :disabled="isDisabled"
+          size="large"
+          @click="finishClick"
+        >同意以上协议，提交申请</van-button>
+      </div>
+    </div>
+    <van-dialog
+      v-model="show"
+      show-cancel-button
+      confirmButtonText="同意"
+      @confirm="next"
+      @cancel="last"
+    >确定已经同意此页面的所有协议？同意进入下一个页面，取消返回上一个页面</van-dialog>
   </div>
 </template>
 <script lang="ts">
@@ -19,88 +56,105 @@ import {
   Toast,
   Popup,
   Field,
-  Cell,
-  CellGroup,
-  Collapse,
-  CollapseItem
+  Checkbox,
+  Dialog,
+  CheckboxGroup
 } from "vant";
-
+Vue.use(Dialog);
 @Component({
   name: "about",
   components: {
     [Button.name]: Button,
     [Field.name]: Field,
-    [CellGroup.name]: CellGroup,
-    [Cell.name]: Cell,
-    [Popup.name]: Popup,
-    [Collapse.name]: Collapse,
-    [CollapseItem.name]: CollapseItem
+    [Checkbox.name]: Checkbox,
+    [CheckboxGroup.name]: CheckboxGroup,
+    [Popup.name]: Popup
   }
 })
 export default class About extends Vue {
-  msg: string = "This is a flower";
-  newIcon: string = require("@/assets/images/jxjrapp.png");
-  // isIos: boolean = false;
-  // isAndroid: boolean = false;
-  get judgeIOS() {
-    var u = navigator.userAgent,
-      app = navigator.appVersion;
-    var isIOS = u; //ios终端
-    return isIOS;
+  checked: boolean = false;
+  isDisabled: boolean = true;
+  show: boolean = false;
+  isSure() {
+    this.checked = !this.checked;
+    if (!this.checked) {
+      this.isDisabled = true;
+    } else {
+      this.isDisabled = false;
+    }
   }
-  get judgeAndroid() {
-    var u = navigator.userAgent,
-      app = navigator.appVersion;
-    var isAndroid = u; //g
-    return isAndroid;
+  finishClick() {
+    if (!this.isDisabled) {
+      this.show = true;
+    }
+  }
+  next() {
+    this.$router.push({ name: "BankAddSpace" });
+  }
+  last() {
+    this.$router.push({ name: "home" });
   }
 }
 </script>
 <style lang="scss">
+@import "../assets/style/normalize";
 .about {
-  h1.aboutlist {
-    font-size: 18px;
-    padding-left: 15px;
-    text-align: left;
-  }
-  .van-cell:first-child {
-    border-top: 1px solid #efefef;
-  }
-  .van-cell__title {
-    text-align: left;
-  }
-  .submitBtn {
-    width: 100%;
-    padding: 0 45px;
-    box-sizing: border-box;
-    text-align: center;
-    margin-top: 30px;
-  }
-  .slotBtn {
-    width: 30px;
-    margin-top: 5px;
-  }
-  .judgeEquip {
-    width: 100%;
-    height: 300px;
-    position: relative;
-    font-size: 12px;
-    div.first {
-      width: 20px;
-      height: 20px;
-      position: absolute;
-      left: 20px;
-      top: 30px;
-      background-color: lime;
+  .content {
+    padding: 15px;
+    padding-bottom: 0;
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
     }
-    div.second {
-      width: 17px;
-      height: 17px;
-      position: absolute;
-      left: 24px;
-      top: 34px;
-      background-color: #fff;
+    p {
+      margin-bottom: 15px;
+      font-size: 15px;
+      color: #333;
+      text-align: left;
+      &:last-child {
+        margin-bottom: 8px;
+      }
     }
+  }
+  .contracts {
+    margin: 15px 0 0 0;
+    display: flex;
+    align-items: flex-start;
+    .contractsCon {
+      display: inline-block;
+      width: 335px;
+      text-align: left;
+      font-size: 12px;
+    }
+    .agreement {
+      color: #1069dd;
+    }
+    .van-checkbox {
+      text-align: left;
+      margin: 4px 8px 0;
+      font-size: 12px;
+      .van-checkbox__icon--round .van-icon {
+        border-radius: 3px;
+        width: 13px;
+        height: 13px;
+        line-height: 8px;
+      }
+      .van-checkbox__label {
+        margin-left: 2px;
+      }
+    }
+  }
+  .completeBtn {
+    padding: 15px;
+    .van-button {
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(244, 244, 244, 1);
+    }
+  }
+  .van-dialog__content {
+    padding: 30px 20px;
   }
 }
 </style>

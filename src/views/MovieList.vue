@@ -6,6 +6,11 @@
       </van-search>
     </div>
     <div class="innerCont">
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="(item,index) in swipeImgList" :key="index">
+          <img :src="getNewImg(item)" class="swipeImg" alt />
+        </van-swipe-item>
+      </van-swipe>
       <van-pull-refresh
         v-model="isLoading"
         @refresh="onRefresh"
@@ -53,7 +58,7 @@
                     size="small"
                     class="comment"
                     @click="comment(item.id)"
-                  >评价</van-button>
+                  >查看评价</van-button>
                 </p>
               </div>
             </div>
@@ -80,6 +85,8 @@ import {
   PullRefresh,
   Pagination,
   Search,
+  Swipe,
+  SwipeItem,
   Toast
 } from "vant";
 import { DateTime } from "luxon";
@@ -95,7 +102,9 @@ Vue.use(Toast);
     [Button.name]: Button,
     [PullRefresh.name]: PullRefresh,
     [Pagination.name]: Pagination,
-    [Search.name]: Search
+    [Search.name]: Search,
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem
   },
   filters: {
     filterComment: (value: number) => {
@@ -115,6 +124,7 @@ export default class About extends Vue {
   isLoading: boolean = false;
   searchText: string = "";
   isShowPage: boolean = false;
+  swipeImgList: any[] = [];
   created() {
     // 自定义加载图标
     Toast.loading({
@@ -137,6 +147,10 @@ export default class About extends Vue {
         this.movieList = res.data.subjects;
         this.isLoading = false;
         this.isShowPage = true;
+        res.data.subjects.map((item: any) =>
+          this.swipeImgList.push(item.images.small)
+        );
+        console.log(this.swipeImgList);
         Toast.clear();
       })
       .catch(err => {
@@ -185,6 +199,10 @@ export default class About extends Vue {
 </script>
 <style lang="scss" scoped>
 .movielist {
+  .swipeImg {
+    width: 100%;
+    height: 200px;
+  }
   .topSearch {
     position: fixed;
     top: 0;
@@ -196,6 +214,10 @@ export default class About extends Vue {
   }
   .someBtn {
     overflow: hidden;
+    padding-top: 7px;
+    .comment {
+      float: left;
+    }
   }
   .innerCont {
     padding-top: 53px;
@@ -248,7 +270,7 @@ export default class About extends Vue {
           }
         }
         .comment {
-          margin-top: 12px;
+          margin-top: 5px;
           margin-right: 10px;
         }
       }
