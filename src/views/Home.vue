@@ -1,12 +1,20 @@
 <template>
   <div class="home">
     <van-collapse v-model="activeNames" v-for="item in list" :key="item.id">
-      <van-collapse-item :title="item.tit" :name="item.id">{{item.content}}</van-collapse-item>
+      <van-collapse-item :title="item.tit" :name="item.id">{{
+        item.content
+      }}</van-collapse-item>
     </van-collapse>
 
-    <div class="clickEnterLsit" @click="clickEnterLsit">点击进入商品列表页面</div>
-    <div class="clickEnterLsit" @click="clickEnterAgree">点击进入协议内容页面</div>
-    <div class="clickEnterLsit" @click="clickEnterSteps">点击进入进度条内容页面</div>
+    <div class="clickEnterLsit" @click="clickEnterLsit">
+      点击进入商品列表页面
+    </div>
+    <div class="clickEnterLsit" @click="clickEnterAgree">
+      点击进入协议内容页面
+    </div>
+    <div class="clickEnterLsit" @click="clickEnterSteps">
+      点击进入进度条内容页面
+    </div>
     <div class="clickEnterLsit" @click="clickEnterLayoutPage">康康布局问题</div>
   </div>
 </template>
@@ -62,7 +70,12 @@ export default class Home extends Vue {
       content: "Compiled successfully in 898ms Type checking in progress..."
     }
   ];
-  activeNames: string[] = [];
+  activeNames: any[] = [];
+  created() {
+    // this.list.map((item: any) => {
+    //   this.activeNames.push(item.id);
+    // });
+  }
   clickEnterLsit() {
     this.$router.push({ name: "movieList" });
   }
@@ -70,7 +83,8 @@ export default class Home extends Vue {
     this.$router.push({ name: "about" });
   }
   clickEnterSteps() {
-    this.$router.push({ name: "stepPage" });
+    this.$router.replace({ name: "stepPage" });
+    window.sessionStorage.setItem("nihao", "nihao");
   }
   clickEnterLayoutPage() {
     this.$router.push({ name: "layoutPage" });

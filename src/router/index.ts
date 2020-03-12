@@ -40,6 +40,31 @@ const routes = [
     component: () => import("@/views/uploadImg.vue")
   },
   {
+    path: "/animate",
+    name: "animate",
+    component: () => import("@/views/animate.vue")
+  },
+  {
+    path: "/useAnimate",
+    name: "useAnimate",
+    component: () => import("@/views/useAnimate.vue")
+  },
+  {
+    path: "/scss",
+    name: "scss",
+    component: () => import("@/views/scss.vue")
+  },
+  {
+    path: "/search",
+    name: "search",
+    component: () => import("@/views/search.vue")
+  },
+  {
+    path: "/drag",
+    name: "drag",
+    component: () => import("@/views/drag.vue")
+  },
+  {
     path: "/comment/:id",
     name: "comment",
     component: () => import("@/views/comment.vue")

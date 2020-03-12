@@ -6,14 +6,9 @@
       </van-search>
     </div>
     <div class="innerCont">
-      <van-swipe
-        :autoplay="3000"
-        indicator-color="white"
-        v-for="(item,index) in swipeImgList"
-        :key="index"
-      >
-        <van-swipe-item>
-          <img src alt />
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item v-for="(item,index) in swipeImgList" :key="index">
+          <img :src="getNewImg(item)" class="swipeImg" alt />
         </van-swipe-item>
       </van-swipe>
       <van-pull-refresh
@@ -129,7 +124,7 @@ export default class About extends Vue {
   isLoading: boolean = false;
   searchText: string = "";
   isShowPage: boolean = false;
-  swipeImgList: string[] = [];
+  swipeImgList: any[] = [];
   created() {
     // 自定义加载图标
     Toast.loading({
@@ -152,7 +147,10 @@ export default class About extends Vue {
         this.movieList = res.data.subjects;
         this.isLoading = false;
         this.isShowPage = true;
-        // this.swipeImgList =
+        res.data.subjects.map((item: any) =>
+          this.swipeImgList.push(item.images.small)
+        );
+        console.log(this.swipeImgList);
         Toast.clear();
       })
       .catch(err => {
@@ -201,6 +199,10 @@ export default class About extends Vue {
 </script>
 <style lang="scss" scoped>
 .movielist {
+  .swipeImg {
+    width: 100%;
+    height: 200px;
+  }
   .topSearch {
     position: fixed;
     top: 0;
