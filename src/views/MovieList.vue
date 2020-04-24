@@ -1,5 +1,5 @@
 <template>
-  <div class="movielist">
+  <div class="movielist" style="filter:grayscale(100%)">
     <div class="topSearch">
       <van-search v-model="searchText" placeholder="请输入搜索关键词" show-action @search="onSearch">
         <div slot="action" @click="onSearch">搜索</div>
