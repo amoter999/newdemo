@@ -45,6 +45,11 @@ const routes = [
     component: () => import("@/views/animate.vue")
   },
   {
+    path: "/vueLazyload",
+    name: "vueLazyload",
+    component: () => import("@/views/vueLazyload.vue")
+  },
+  {
     path: "/useAnimate",
     name: "useAnimate",
     component: () => import("@/views/useAnimate.vue")

@@ -1,5 +1,5 @@
 <template>
-  <div class="comment" v-if="show"  style="filter:grayscale(100%)">
+  <div class="comment" v-if="show">
     <div class="allComments">
       <p class="comTit">全部评论：</p>
       <div class="comment" v-for="item in commentObj.comments" :key="item.id">
