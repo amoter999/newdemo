@@ -16,7 +16,7 @@
     "better-scroll": "^1.15.2",
     "core-js": "^3.4.3",
     "luxon": "^1.21.3",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "postcss-pxtorem": "^4.0.1",
     "px2rem-loader": "^0.1.9",
     "vant": "^2.2.16",
